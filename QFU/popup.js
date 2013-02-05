@@ -16,7 +16,7 @@ var populateQuotes = function() {
 			var $span=$(this);
 			var stockName = $span.children('input').val();
 			var googleQuote = getGoogleFinanceQuote(stockName);
-			$span.children('label').val(googleQuote);
+			$span.children('label').text(googleQuote);
 		}
 	)
 };

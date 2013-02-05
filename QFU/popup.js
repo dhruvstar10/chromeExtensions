@@ -9,15 +9,17 @@ var initialize = function() {
 	$('#getQuoteButton').click(populateQuotes);
 };
 
+// function to update the labels next to stocks
 var populateQuotes = function() {
 	var stockInputList = $("#stockList input");
 	$(stockInputList).each(
-      function() {
-           alert($(this).val());
-       }
+        function() {
+        	var googleQuote = getGoogleFinanceQuote($(this.val()));
+        }
 	);
 };
 
+// function to get the quote for a particular stock via Google
 var getGoogleFinanceQuote = function(stockName) {
 	return 123;
 };

@@ -11,12 +11,14 @@ var initialize = function() {
 
 // function to update the labels next to stocks
 var populateQuotes = function() {
-	var stockInputList = $("#stockList input");
-	$(stockInputList).each(
-        function() {
-        	var googleQuote = getGoogleFinanceQuote($(this.val()));
-        }
-	);
+	$('#stockList span').each(
+		function(){
+			var $span=$(this);
+			var stockName = $span.children('input').val();
+			var googleQuote = getGoogleFinanceQuote(stockName);
+			$span.children('label').val(googleQuote);
+		}
+	)
 };
 
 // function to get the quote for a particular stock via Google

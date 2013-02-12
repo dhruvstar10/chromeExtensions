@@ -15,15 +15,18 @@ var populateQuotes = function() {
 		function(){
 			var $span=$(this);
 			var stockName = $span.children('input').val();
-			var googleQuote = getGoogleFinanceQuote(stockName);
-			$span.children('label').text(googleQuote);
+			var label = $span.children('label');
+			var googleQuote = getGoogleFinanceQuote(stockName, label);
 		}
 	)
 };
 
 // function to get the quote for a particular stock via Google
-var getGoogleFinanceQuote = function(stockName) {
-	return 123;
+var getGoogleFinanceQuote = function(stockName, label) {
+	var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20WHERE%20symbol%3D'" + stockName + "'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+	$.getJSON(url, function(data) {
+	    label.text(data.query.results.quote.LastTradePriceOnly);
+	});
 };
 
 
